@@ -15,7 +15,7 @@ class Greeklish {
     public function make($text, $stop_one = false, $stop_two = false, $separator = '-') {
 
         $expressions = array(
-            '/[αΑ][ιίΙΊ]/u' => 'e',
+            '/[αΑ][ιίΙΊ]/u' => 'ai',
             '/[οΟΕε][ιίΙΊ]/u' => 'i',
 
             '/[αΑ][υύΥΎ]([θΘκΚξΞπΠσςΣτTφΡχΧψΨ]|\s|$)/u' => 'au$1',
