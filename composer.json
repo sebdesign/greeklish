@@ -1,5 +1,5 @@
 {
-    "name": "sebdesign/greeklish",
+    "name": "skapator/greeklish",
     "type": "helper",
     "description": "Converts Greek characters to latin. Used for slugs mainly",
     "keywords": ["greeklish", "laravel", "laravel4"],
@@ -7,8 +7,8 @@
     "license": "GPL-3.0",
     "authors": [
         {
-            "name": "sebdesign",
-            "email": "info@sebdesign.eu"
+            "name": "skapator",
+            "email": "skapator@gmail.com"
         }
     ],
     "require": {
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Sebdesign\\Greeklish": "src/"
+            "Skapator\\Greeklish": "src/"
         }
     },
     "minimum-stability": "dev"
