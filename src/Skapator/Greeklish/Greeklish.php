@@ -12,7 +12,7 @@ class Greeklish {
      * @author Skapator
      * @access public
      */
-    public function make($text, $stop_one = false, $stop_two = false) {
+    public function make($text, $stop_one = false, $stop_two = false, $separator = '-') {
 
         $expressions = array(
             '/[αΑ][ιίΙΊ]/u' => 'e',
@@ -77,11 +77,7 @@ class Greeklish {
             $text = preg_replace('/\s+\D{2}(?!\S)|(?<!\S)\D{2}\s+/', '', $text);
         }
 
-        $text = preg_replace( '/\s+/', '-', $text );
-
-        $text = preg_replace( '/[^a-z0-9_\.\-]/u', '', $text );
-
-        return $text;
+        return \Illuminate\Support\Str::slug($text, $separator);
     }
 
 }
