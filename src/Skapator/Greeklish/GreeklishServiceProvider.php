@@ -9,7 +9,7 @@ class GreeklishServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = false;
+	protected $defer = true;
 
     /**
     * Bootstrap the application events.
@@ -18,7 +18,7 @@ class GreeklishServiceProvider extends ServiceProvider {
     */
     public function boot()
     {
-        $this->package('skapator/greeklish');
+        // $this->package('skapator/greeklish');
     }
 
 	/**
@@ -28,7 +28,7 @@ class GreeklishServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-        $this->app['greeklish'] = $this->app->share(function($app)
+        $this->app->singleton('Greeklish', function($app)
         {
             return new Greeklish;
         });
@@ -41,7 +41,7 @@ class GreeklishServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('greeklish');
+		return ['Greeklish'];
 	}
 
 }
