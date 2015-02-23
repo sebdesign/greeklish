@@ -6,13 +6,14 @@ class Greeklish {
      * Greeglish
      *
      * @param string $text - the greek text
+     * @param string $separator - the separator character
      * @param bool $stop_one - if true removes one letter words
      * @param bool $stop_two - if true removes two letter words
      * @return string $text
      * @author Skapator
      * @access public
      */
-    public function make($text, $stop_one = false, $stop_two = false, $separator = '-') {
+    public function make($text, $separator = '-', $stop_one = false, $stop_two = false) {
 
         $expressions = array(
             '/[αΑ][ιίΙΊ]/u' => 'ai',
