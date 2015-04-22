@@ -13,7 +13,7 @@ class Greeklish {
      * @author Skapator
      * @access public
      */
-    public function make($text, $separator = '-', $stop_one = false, $stop_two = false) {
+    public static function make($text, $separator = '-', $stop_one = false, $stop_two = false) {
 
         $expressions = array(
             '/[αΑ][ιίΙΊ]/u' => 'ai',
