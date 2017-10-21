@@ -3,7 +3,7 @@
     "type": "helper",
     "description": "Converts Greek characters to latin. Used for slugs mainly",
     "keywords": ["greeklish", "laravel", "laravel5"],
-    "homepage": "",
+    "homepage": "https://github.com/skapator/greeklish",
     "license": "GPL-3.0",
     "authors": [
         {
