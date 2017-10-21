@@ -20,5 +20,15 @@
             "Skapator\\Greeklish": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Skapator\\Greeklish\\GreeklishServiceProvider"
+            ],
+            "aliases": {
+                "Greeklish": "Skapator\\Greeklish\\Facades\\Greeklish"
+            }
+        }
+    },
     "minimum-stability": "dev"
 }
