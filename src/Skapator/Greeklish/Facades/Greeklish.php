@@ -11,7 +11,7 @@ class Greeklish extends Facade {
     */
     protected static function getFacadeAccessor()
     {
-        return 'greeklish';
+        return 'Greeklish';
     }
 
 }
