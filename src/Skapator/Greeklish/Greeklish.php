@@ -3,18 +3,14 @@
 class Greeklish {
 
     /**
-     * Greeglish
+     * expressions
      *
      * @param string $text - the greek text
-     * @param string $separator - the separator character
-     * @param bool $stop_one - if true removes one letter words
-     * @param bool $stop_two - if true removes two letter words
-     * @return string $text
+     * @return array $expressions
      * @author Skapator
-     * @access public
+     * @access protected
      */
-    public static function make($text, $separator = '-', $stop_one = false, $stop_two = false) {
-
+    protected function expressions() {
         $expressions = array(
             '/[αΑ][ιίΙΊ]/u' => 'ai',
             '/[Εε][ιίΙΊ]/u' => 'ei',
@@ -64,22 +60,103 @@ class Greeklish {
             '/[ωώ]/iu' => 'o',
 
             '/[«]/iu' => '',
-            '/[»]/iu' => ''
+            '/[»]/iu' => '',
+
         );
+
+        return $expressions;
+    }
+
+    /**
+     * make
+     *
+     * @param string $text - the greek text
+     * @return string $text
+     * @author Skapator
+     * @access public
+     */
+    public function make($text) {
+
+        $expressions = $this->expressions();
 
         $text = preg_replace( array_keys($expressions), array_values($expressions), $text );
 
+        return $text;
+    }
+
+
+    /**
+     * text
+     *
+     * @param string $text - the greek text
+     * @param bool $stop_one - if true removes one letter words
+     * @param bool $stop_two - if true removes two letter words
+     * @return string $text
+     * @author Skapator
+     * @access public
+     */
+    public function text($text, $stop_one = false, $stop_two = false) {
+
+        $text = $this->make($text);
+
         if ($stop_one == true)
-        {
-            $text = preg_replace('/\s+\D{1}(?!\S)|(?<!\S)\D{1}\s+/', '', $text);
-        }
+            $text = $this->stopOne($text);
 
         if ($stop_two == true )
-        {
-            $text = preg_replace('/\s+\D{2}(?!\S)|(?<!\S)\D{2}\s+/', '', $text);
-        }
+            $text = $this->stopTwo($text);
 
-        return \Illuminate\Support\Str::slug($text, $separator);
+        return $text;
+    }
+
+
+    /**
+     * slug
+     *
+     * @param string $text - the greek text
+     * @return string $text
+     * @author Skapator
+     * @access public
+     */
+    public function slug($text, $stop_one = true, $stop_two = false) {
+
+        $text = $this->make($text);
+
+        if ($stop_one == true)
+            $text = $this->stopOne($text);
+
+        if ($stop_two == true )
+            $text = $this->stopTwo($text);
+
+        $text = preg_replace( array('/&.*?;/', '/\s+/', '/[^A-Za-z0-9_\.\-]/u'),  array(' ', '-', ''), $text );
+        $text = filter_var(strtolower($text), FILTER_SANITIZE_URL);
+
+        return \Str::slug($text);
+    }
+
+    /**
+     * stopOne
+     *
+     * @param string $text - string
+     * @return string $text
+     * @author Skapator
+     * @access public
+     */
+    public function stopOne($text) {
+
+        return preg_replace('/\s+\D{1}(?!\S)|(?<!\S)\D{1}\s+/', '', $text);
+    }
+
+    /**
+     * stopTwo
+     *
+     * @param string $text - string
+     * @return string $text
+     * @author Skapator
+     * @access public
+     */
+    public function stopTwo($text) {
+
+        return preg_replace('/\s+\D{2}(?!\S)|(?<!\S)\D{2}\s+/', '', $text);
     }
 
 }
