@@ -1,5 +1,7 @@
 <?php namespace Skapator\Greeklish;
 
+use Illuminate\Support\Str;
+
 class Greeklish {
 
     /**
@@ -130,7 +132,7 @@ class Greeklish {
         $text = preg_replace( array('/&.*?;/', '/\s+/', '/[^A-Za-z0-9_\.\-]/u'),  array(' ', '-', ''), $text );
         $text = filter_var(strtolower($text), FILTER_SANITIZE_URL);
 
-        return \Str::slug($text);
+        return Str::slug($text);
     }
 
     /**
